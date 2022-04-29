@@ -31,6 +31,7 @@ runs:
         token: ${{ inputs.token }}
         ref: ${{ inputs.ref }}
         path: .link-actions
+        set-safe-directory: false
 
     - run: mv ${GITHUB_WORKSPACE}/.link-actions ${{ runner.temp }}/.link-actions
       shell: bash
