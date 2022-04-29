@@ -42,6 +42,7 @@ runs:
         ls -al .github/actions
         if [[ -d .github/actions ]]
         then
+          mkdir -p ${{ env.GITHUB_WORKSPACE }}/.github/actions
           for name in `ls .github/actions`
           do
             echo "Linking ${name} to ${{ env.GITHUB_WORKSPACE }}/.github/actions/${{ inputs.prefix }}${name}"
