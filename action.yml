@@ -39,11 +39,12 @@ runs:
       id: link
       shell: bash
       run: |
-        if [[ -d ".github/actions" ]]
+        ls -al .github/actions
+        if [[ -d .github/actions ]]
         then
           for name in `ls .github/actions`
           do
             echo "Linking ${name} to ${{ env.GITHUB_WORKSPACE }}/.github/actions/${{ inputs.prefix }}${name}"
-            ln -s "${{ runner.temp }}/gha/.github/actions/${name}" "${{ env.GITHUB_WORKSPACE }}/.github/actions/${{ inputs.prefix }}${name}"
+            ln -s ".github/actions/${name}" "${{ env.GITHUB_WORKSPACE }}/.github/actions/${{ inputs.prefix }}${name}"
           done
         fi
