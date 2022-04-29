@@ -30,9 +30,8 @@ runs:
         repository: ${{ inputs.repository }}
         token: ${{ inputs.token }}
         ref: ${{ inputs.ref }}
-        path: .temp
 
-    - run: mv ${{ env.GITHUB_WORKSPACE }}/.temp ${{ runner.temp }}/gha
+    - run: mv ${GITHUB_WORKSPACE}/.temp ${{ runner.temp }}/gha
       shell: bash
 
     - working-directory: ${{ runner.temp }}/gha
@@ -42,10 +41,10 @@ runs:
         ls -al .github/actions
         if [[ -d .github/actions ]]
         then
-          mkdir -p ${{ env.GITHUB_WORKSPACE }}/.github/actions
+          mkdir -p ${GITHUB_WORKSPACE}/.github/actions
           for name in `ls .github/actions`
           do
-            echo "Linking ${name} to ${{ env.GITHUB_WORKSPACE }}/.github/actions/${{ inputs.prefix }}${name}"
-            ln -s "${{ runner.temp }}/gha/.github/actions/${name}" "${{ env.GITHUB_WORKSPACE }}/.github/actions/${{ inputs.prefix }}${name}"
+            echo "Linking ${name} to ${GITHUB_WORKSPACE}/.github/actions/${{ inputs.prefix }}${name}"
+            ln -s "${{ runner.temp }}/gha/.github/actions/${name}" "${GITHUB_WORKSPACE}/.github/actions/${{ inputs.prefix }}${name}"
           done
         fi
