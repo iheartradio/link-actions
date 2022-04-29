@@ -30,11 +30,12 @@ runs:
         repository: ${{ inputs.repository }}
         token: ${{ inputs.token }}
         ref: ${{ inputs.ref }}
+        path: .link-actions
 
-    - run: mv ${GITHUB_WORKSPACE}/.temp ${{ runner.temp }}/gha
+    - run: mv ${GITHUB_WORKSPACE}/.link-actions ${{ runner.temp }}/.link-actions
       shell: bash
 
-    - working-directory: ${{ runner.temp }}/gha
+    - working-directory: ${{ runner.temp }}/.link-actions
       id: link
       shell: bash
       run: |
@@ -45,6 +46,6 @@ runs:
           for name in `ls .github/actions`
           do
             echo "Linking ${name} to ${GITHUB_WORKSPACE}/.github/actions/${{ inputs.prefix }}${name}"
-            ln -s "${{ runner.temp }}/gha/.github/actions/${name}" "${GITHUB_WORKSPACE}/.github/actions/${{ inputs.prefix }}${name}"
+            ln -s "`pwd`/.github/actions/${name}" "${GITHUB_WORKSPACE}/.github/actions/${{ inputs.prefix }}${name}"
           done
         fi
