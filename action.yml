@@ -46,6 +46,6 @@ runs:
           for name in `ls .github/actions`
           do
             echo "Linking ${name} to ${{ env.GITHUB_WORKSPACE }}/.github/actions/${{ inputs.prefix }}${name}"
-            ln -s ".github/actions/${name}" "${{ env.GITHUB_WORKSPACE }}/.github/actions/${{ inputs.prefix }}${name}"
+            ln -s "${{ runner.temp }}/gha/.github/actions/${name}" "${{ env.GITHUB_WORKSPACE }}/.github/actions/${{ inputs.prefix }}${name}"
           done
         fi
