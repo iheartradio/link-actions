@@ -1,0 +1,49 @@
+name: Link GHA Actions
+author: Taylor Perkins
+description: Given another repo containing your reusable actions, link them to the current repo with a prefix
+inputs:
+  repository:
+    description: actions/checkout@v2::repository
+    required: true
+
+  token:
+    description: actions/checkout@v2::token
+    required: false
+    default: ''
+
+  ref:
+    description: actions/checkout@v2::ref
+    default: 'main'
+    required: false
+
+  prefix:
+    description: Prefix to use for workflows and actions
+    default: ''
+    required: false
+
+runs:
+  using: composite
+  steps:
+    - name: Clone repo
+      uses: actions/checkout@v2
+      with:
+        repository: ${{ inputs.repository }}
+        token: ${{ inputs.token }}
+        ref: ${{ inputs.ref }}
+        path: .tmp
+
+    - run: mv ${{ env.GITHUB_WORKSPACE }}/.tmp ${{ runner.tmp }}/gha
+      shell: bash
+
+    - working-directory: ${{ runner.tmp }}/gha
+      id: link
+      shell: bash
+      run: |
+        if [[ -d ".github/actions" ]]
+        then
+          for name in `ls .github/actions`
+          do
+            echo "Linking ${name} to ${{ env.GITHUB_WORKSPACE }}/.github/actions/${{ inputs.prefix }}${name}"
+            ln -s "${{ runner.tmp }}/gha/.github/actions/${name}" "${{ env.GITHUB_WORKSPACE }}/.github/actions/${{ inputs.prefix }}${name}"
+          done
+        fi
