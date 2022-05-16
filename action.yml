@@ -46,7 +46,7 @@ runs:
           mkdir -p ${GITHUB_WORKSPACE}/.github/actions
           for name in `ls .github/actions`
           do
-            echo "Linking ${name} to ${GITHUB_WORKSPACE}/.github/actions/${{ inputs.prefix }}${name}"
             ln -s "`pwd`/.github/actions/${name}" "${GITHUB_WORKSPACE}/.github/actions/${{ inputs.prefix }}${name}"
           done
+          find "${GITHUB_WORKSPACE}/.github/actions" -name action.yml
         fi
