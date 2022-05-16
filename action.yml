@@ -47,7 +47,7 @@ runs:
           do
             d=$(dirname $p)
             mkdir -p "${GITHUB_WORKSPACE}/${d}"
-            ln -s "`pwd`/${d}" "${GITHUB_WORKSPACE}/${d}"
+            ln -s "`pwd`/${d}/" "${GITHUB_WORKSPACE}/${d}"
           done
           # normal
           find "${GITHUB_WORKSPACE}/.github/actions" -name action.yml
