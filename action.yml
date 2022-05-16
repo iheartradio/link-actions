@@ -43,10 +43,10 @@ runs:
         ls -al .github/actions
         if [[ -d .github/actions ]]
         then
-          mkdir -p ${GITHUB_WORKSPACE}/.github/actions
           for p in `find .github/actions -name action.yml`
           do
             d=$(dirname $p)
+            mkdir -p "${GITHUB_WORKSPACE}/${d}"
             ln -s "`pwd`/${d}" "${GITHUB_WORKSPACE}/${d}"
           done
           # normal
