@@ -52,5 +52,5 @@ runs:
           # normal
           find "${GITHUB_WORKSPACE}/.github/actions" -name action.yml
           # links
-          find "${GITHUB_WORKSPACE}/.github/actions" -name action.yml -type l -ls
+          find "${GITHUB_WORKSPACE}/.github/actions" -type l -ls
         fi
