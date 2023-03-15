@@ -3,16 +3,16 @@ author: Taylor Perkins
 description: Given another repo containing your reusable actions, link them to the current repo with a prefix
 inputs:
   repository:
-    description: actions/checkout@v2::repository
+    description: actions/checkout@v3::repository
     required: true
 
   token:
-    description: actions/checkout@v2::token
+    description: actions/checkout@v3::token
     required: false
     default: ''
 
   ref:
-    description: actions/checkout@v2::ref
+    description: actions/checkout@v3::ref
     default: 'main'
     required: false
 
@@ -25,7 +25,7 @@ runs:
   using: composite
   steps:
     - name: Clone repo
-      uses: actions/checkout@v2
+      uses: actions/checkout@v3
       with:
         repository: ${{ inputs.repository }}
         token: ${{ inputs.token }}
