@@ -33,7 +33,9 @@ runs:
         path: .link-actions
         set-safe-directory: false
 
-    - run: mv ${GITHUB_WORKSPACE}/.link-actions ${{ runner.temp }}/.link-actions
+    - run: |
+        rm -rf ${{ runner.temp }}/.link-actions
+        mv ${GITHUB_WORKSPACE}/.link-actions ${{ runner.temp }}/.link-actions
       shell: bash
 
     - working-directory: ${{ runner.temp }}/.link-actions
