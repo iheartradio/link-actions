@@ -12,7 +12,7 @@ inputs:
     default: ''
 
   ref:
-    description: actions/checkout@v3::ref
+    description: actions/checkout@v4::ref
     default: 'main'
     required: false
 
@@ -25,7 +25,7 @@ runs:
   using: composite
   steps:
     - name: Clone repo
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4
       with:
         repository: ${{ inputs.repository }}
         token: ${{ inputs.token }}
