@@ -3,11 +3,11 @@ author: Taylor Perkins
 description: Given another repo containing your reusable actions, link them to the current repo with a prefix
 inputs:
   repository:
-    description: actions/checkout@v3::repository
+    description: actions/checkout@v4::repository
     required: true
 
   token:
-    description: actions/checkout@v3::token
+    description: actions/checkout@v4::token
     required: false
     default: ''
 
