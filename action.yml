@@ -1,5 +1,5 @@
 name: Link GHA Actions
-author: Taylor Perkins
+author: Data Science
 description: Given another repo containing your reusable actions, link them to the current repo with a prefix
 inputs:
   repository:
